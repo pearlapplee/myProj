@@ -1,0 +1,127 @@
+body {
+  margin-top: 30px;
+  font-family: "Laila", sans-serif;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+a:hover {
+  color: rgb(46, 137, 255);
+}
+.container {
+  padding: 30px 45px;
+  border-radius: 5px;
+  width: 1100px;
+}
+.entry-field {
+  border: none;
+  border-radius: 8px;
+  padding: 0px 10px;
+  width: 350px;
+  display: inline;
+}
+input.entry-field:focus {
+  border: 1px solid rgb(0, 174, 255);
+  transition: all 200ms ease-in-out;
+}
+form {
+  display: inline;
+}
+.button {
+  margin-left: 6px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition: all 200ms ease-in;
+}
+.but-1:hover {
+  color: rgb(102, 226, 0);
+  border: 1px solid rgb(102, 226, 0);
+  border-radius: 5px;
+  transition: all 250ms ease;
+}
+.but-2:hover {
+  color: rgb(47, 168, 255);
+  border: 1px solid rgb(47, 168, 255);
+  border-radius: 5px;
+  transition: all 250ms ease;
+}
+.wrapper {
+  margin-top: 40px;
+  text-align: center;
+}
+.current {
+  flex-basis: 40%;
+}
+.current-city {
+  font-family: "Viga", sans-serif;
+  font-size: 50px;
+}
+.wrapp-fa {
+  margin: 25px;
+}
+.sun {
+  font-size: 100px;
+  color: #fff117;
+  margin-right: 20px;
+}
+.other-weath {
+  font-size: 13px;
+  font-weight: 600;
+}
+.wind,
+.rain {
+  display: block;
+  padding: 5px;
+}
+.current-temperature {
+  font-size: 48px;
+}
+.weather-forecast {
+  text-align: left;
+  margin: 0 auto;
+  font-size: 30px;
+}
+.day {
+  cursor: pointer;
+  transition: all 200ms ease-out;
+}
+.date {
+  color: gray;
+  font-size: 20px;
+  padding: 0 15px;
+}
+.current-date {
+  color: #92c692;
+  margin-right: 15px;
+}
+.active {
+  font-size: 45px;
+  margin: 15px 0px 15px 20px;
+}
+.unit-temp {
+  color: gray;
+  cursor: pointer;
+}
+.active-temp {
+  color: black;
+  cursor: default;
+}
+/* .day:hover {
+  font-size: 45px;
+  margin: 15px;
+  transition: all 250ms ease-in;
+} */
+.week {
+  cursor: pointer;
+  color: rgb(99, 123, 194);
+  font-size: 18px;
+  margin-top: 15px;
+  transition: all 200ms ease-out;
+}
+.week:hover {
+  font-size: 30px;
+  transition: all 250ms ease-in;
+}

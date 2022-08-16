@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/52240e54a0.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="src/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Viga&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container border">
+      <div class="row header">
+        <div class="col-8">
+          <form id="searching">
+            <input
+              type="text"
+              class="entry-field shadow-sm form-control"
+              id="city-input"
+              placeholder="enter a city"
+              required
+            />
+            <input
+              type="submit"
+              class="button but-1 shadow-sm"
+              value="search"
+            />
+          </form>
+          <button
+            type="button"
+            id="current-buttom"
+            class="button but-2 shadow-sm"
+          >
+            current
+          </button>
+        </div>
+        <a class="col text-center kyiv">Kyiv</a>
+        <a class="col text-center warszawa">Warszaw</a>
+        <a class="col text-center paris">Paris</a>
+        <a class="col text-center ottawa">Ottawa</a>
+      </div>
+
+      <div class="wrapper d-flex align-items-center">
+        <div class="current">
+          <h1 class="current-city" id="changedCity"></h1>
+          <div class="current-time" id="current-time"></div>
+          <div
+            class="wrapp-fa d-flex justify-content-center align-items-center"
+          >
+            <i class="fa-regular fa-sun sun"></i>
+            <div class="other-weath">
+              <div class="wind">
+                <i class="fa-solid fa-wind"></i> <span id="wind"></span> m/s
+              </div>
+              <div class="rain">
+                <i class="fa-solid fa-cloud-rain"></i>
+                <span id="humidity"></span> %
+              </div>
+            </div>
+          </div>
+          <div class="current-temperature">
+            <span id="temp"></span>
+            <span class="unit-temp active-temp" id="celsius">°C</span>
+            |
+            <span class="unit-temp" id="fahrenheit">°F</span>
+          </div>
+        </div>
+
+        <div class="weather-forecast">
+          <div class="day">
+            <span class="date yesterday"></span>
+            yesterday
+            <i class="fa-solid fa-cloud" style="color: gray"></i>
+            18°C
+          </div>
+
+          <div class="day current-day active">
+            <span class="current-date"></span>
+            today
+            <i class="fa-solid fa-sun" style="color: rgb(252, 248, 0)"></i>
+            <span id="max-temp"></span><span id="today-units">°C</span>
+          </div>
+
+          <div class="day">
+            <span class="date tomorrow"></span>
+            tomorrow
+            <i
+              class="fa-solid fa-cloud-sun-rain"
+              style="color: rgb(117, 159, 255)"
+            ></i>
+            20°C
+          </div>
+
+          <div class="week">next week <i class="fa-solid fa-carrot"></i></div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>

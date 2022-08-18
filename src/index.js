@@ -8,14 +8,21 @@ let days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 let curTime = document.querySelector("#current-time");
 let apiKey = "73bfd2ae5939a4df8f8990461d435a84";
 
+let hours0 = "00";
+let min0 = "00";
+
 if (hours < 10) {
-  curTime.innerHTML = `0${hours}:${min}`;
-}
-if (min < 10) {
-  curTime.innerHTML = `${hours}:0${min}`;
+  hours0 = `0${hours}`;
 } else {
-  curTime.innerHTML = `${hours}:${min}`;
+  hours0 = `${hours}`;
 }
+
+if (min < 10) {
+  min0 = `0${min}`;
+} else {
+  min0 = `${min}`;
+}
+curTime.innerHTML = `${hours0}:${min0}`;
 
 let curDay = document.querySelector(".current-date");
 curDay.innerHTML = `${days[day]} ${date}`;

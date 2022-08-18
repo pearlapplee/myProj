@@ -10,6 +10,9 @@ a {
 a:hover {
   color: rgb(46, 137, 255);
 }
+p {
+  padding: 10px 240px;
+}
 .container {
   padding: 30px 45px;
   border-radius: 5px;

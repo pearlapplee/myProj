@@ -34,7 +34,8 @@ let tomorrow = document.querySelector(".tomorrow");
 if (days[day + 1] === undefined) {
   tomorrow.innerHTML = `${days[0]} ${date + 1}`;
 } else {
-  tomorrow.innerHTML = `${days[day + 1]} ${date + 1}`;
+  now.setDate(date + 1);
+  tomorrow.innerHTML = `${days[day + 1]} ${now.getDate()}`;
 } //
 
 // Поиск города

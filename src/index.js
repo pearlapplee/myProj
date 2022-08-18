@@ -31,8 +31,11 @@ let yesterday = document.querySelector(".yesterday");
 yesterday.innerHTML = `${days[day - 1]} ${date - 1}`;
 
 let tomorrow = document.querySelector(".tomorrow");
-tomorrow.innerHTML = `${days[day + 1]} ${date + 1}`; //когда суббота, не переключает на воскресенье
-//
+if (days[day + 1] === undefined) {
+  tomorrow.innerHTML = `${days[0]} ${date + 1}`;
+} else {
+  tomorrow.innerHTML = `${days[day + 1]} ${date + 1}`;
+} //
 
 // Поиск города
 let cityInput = document.querySelector("#city-input");

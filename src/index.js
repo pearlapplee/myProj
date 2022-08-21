@@ -8,6 +8,7 @@ let days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 let curTime = document.querySelector("#current-time");
 let apiKey = "73bfd2ae5939a4df8f8990461d435a84";
 
+// time
 let hours0 = "00";
 let min0 = "00";
 
@@ -23,12 +24,18 @@ if (min < 10) {
   min0 = `${min}`;
 }
 curTime.innerHTML = `${hours0}:${min0}`;
+//
 
 let curDay = document.querySelector(".current-date");
 curDay.innerHTML = `${days[day]} ${date}`;
 
 let yesterday = document.querySelector(".yesterday");
-yesterday.innerHTML = `${days[day - 1]} ${date - 1}`;
+if (days[day - 1] === undefined) {
+  yesterday.innerHTML = `${days[6]} ${date - 1}`;
+} else {
+  now.setDate(date - 1);
+  yesterday.innerHTML = `${days[day - 1]} ${now.getDate()}`;
+}
 
 let tomorrow = document.querySelector(".tomorrow");
 if (days[day + 1] === undefined) {
@@ -36,7 +43,8 @@ if (days[day + 1] === undefined) {
 } else {
   now.setDate(date + 1);
   tomorrow.innerHTML = `${days[day + 1]} ${now.getDate()}`;
-} //
+}
+//
 
 // Поиск города
 let cityInput = document.querySelector("#city-input");
@@ -49,6 +57,9 @@ function searching(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityUrl}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(showTemp);
+  if (fahrenheit.classList.contains("active-temp")) {
+    addCelsius();
+  }
 }
 
 let searchForm = document.querySelector("#searching");
@@ -60,7 +71,11 @@ function clickCity(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(showTemp);
+  if (fahrenheit.classList.contains("active-temp")) {
+    addCelsius();
+  }
 }
+
 let kyiv = document.querySelector(".kyiv");
 kyiv.addEventListener("click", () => clickCity("kyiv"));
 
@@ -80,26 +95,29 @@ function calcFahr(e) {
     let city = changedCity.textContent;
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
     axios.get(apiUrl).then(showTemp);
-
-    unit.innerHTML = "°F";
+    addFahrenheit();
   }
-
+}
+function addFahrenheit() {
+  unit.innerHTML = "°F";
   //удаляю/добавляю стили
   celsius.classList.toggle("active-temp");
   fahrenheit.classList.toggle("active-temp");
-
   this.removeEventListener("click", calcFahr);
   celsius.addEventListener("click", calcCels);
 }
+
 function calcCels(e) {
   if (e.target === celsius) {
     let city = changedCity.textContent;
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(showTemp);
-
-    unit.innerHTML = "°C";
+    addCelsius();
   }
+}
 
+function addCelsius() {
+  unit.innerHTML = "°C";
   //удаляю/добавляю стили
   fahrenheit.classList.toggle("active-temp");
   celsius.classList.toggle("active-temp");
@@ -128,7 +146,7 @@ function showTemp(response) {
   curTemp.innerHTML = currTemp;
   wind.innerHTML = Math.round(response.data.wind.speed);
   hum.innerHTML = response.data.main.humidity;
-  maxTemp.innerHTML = Math.round(response.data.main.temp_max); //как заменять °C на °F, и наоборот??
+  maxTemp.innerHTML = Math.round(response.data.main.temp_max);
 }
 
 function currentPos(position) {
@@ -136,9 +154,12 @@ function currentPos(position) {
   let lon = position.coords.longitude;
   let coordsUrl = `lat=${lat}&lon=${lon}`;
   cityURL = coordsUrl;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${coordsUrl}&appid=${apiKey}&units=metric`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?${coordsUrl}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(showTemp);
+  if (fahrenheit.classList.contains("active-temp")) {
+    addCelsius();
+  }
 }
 
 function geoloc() {
@@ -149,3 +170,5 @@ geoloc();
 let buttCurr = document.querySelector("#current-buttom");
 buttCurr.addEventListener("click", geoloc);
 //
+//метры в секунду -> мили в час
+//картинки погоды

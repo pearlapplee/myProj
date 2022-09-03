@@ -52,14 +52,15 @@ let changedCity = document.querySelector("#changedCity");
 
 function searching(event) {
   event.preventDefault();
+  search(cityInput.value);
+}
 
-  cityUrl = cityInput.value;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityUrl}&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(showTemp);
-  if (fahrenheit.classList.contains("active-temp")) {
-    addCelsius();
-  }
+
+  bugFixWithFahr();
 }
 
 let searchForm = document.querySelector("#searching");
@@ -71,9 +72,7 @@ function clickCity(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(showTemp);
-  if (fahrenheit.classList.contains("active-temp")) {
-    addCelsius();
-  }
+  bugFixWithFahr();
 }
 
 let kyiv = document.querySelector(".kyiv");
@@ -100,15 +99,21 @@ function calcFahr(e) {
 }
 function addFahrenheit() {
   unit.innerHTML = "°F";
+  unitSpeed.innerHTML = "mph";
   //удаляю/добавляю стили
-  celsius.classList.toggle("active-temp");
-  fahrenheit.classList.toggle("active-temp");
-  this.removeEventListener("click", calcFahr);
-  celsius.addEventListener("click", calcCels);
+  celsius.classList.remove("active-temp");
+  fahrenheit.classList.add("active-temp");
+}
+
+function bugFixWithFahr() {
+  if (fahrenheit.classList.contains("active-temp")) {
+    addCelsius();
+  }
 }
 
 function calcCels(e) {
   if (e.target === celsius) {
+    // clickCity(changedCity.textContent);
     let city = changedCity.textContent;
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(showTemp);
@@ -118,35 +123,49 @@ function calcCels(e) {
 
 function addCelsius() {
   unit.innerHTML = "°C";
+  unitSpeed.innerHTML = "m/s";
   //удаляю/добавляю стили
-  fahrenheit.classList.toggle("active-temp");
-  celsius.classList.toggle("active-temp");
-
-  this.removeEventListener("click", calcCels);
-  fahrenheit.addEventListener("click", calcFahr);
+  fahrenheit.classList.remove("active-temp");
+  celsius.classList.add("active-temp");
 }
 
 let fahrenheit = document.querySelector("#fahrenheit");
 let celsius = document.querySelector("#celsius");
 let unit = document.querySelector("#today-units");
+let unitSpeed = document.querySelector("#unit-speed");
 
 fahrenheit.addEventListener("click", calcFahr);
+celsius.addEventListener("click", calcCels);
 
 //температура API
 let curTemp = document.querySelector("#temp");
-//ветер, влажность(нужна вероятность осадков), максимальная температура
+//ветер, влажность(нужна вероятность осадков), максимальная температура, icon
 let wind = document.querySelector("#wind");
 let hum = document.querySelector("#humidity");
 let maxTemp = document.querySelector("#max-temp");
+let icon = document.querySelector("#icon");
+let description = document.querySelector("#description");
+
+let currTemp = null; //делает так что не нужно каждый раз удалять/добавлять ивент-листенер
 
 function showTemp(response) {
+  console.log(response);
   let currTemp = Math.round(response.data.main.temp);
-  let currCity = response.data.name.toUpperCase();
+  currCity = response.data.name.toUpperCase();
+  let iconApi = response.data.weather[0].icon;
+  let iconDescription = response.data.weather[0].description;
+
   changedCity.innerHTML = currCity;
   curTemp.innerHTML = currTemp;
   wind.innerHTML = Math.round(response.data.wind.speed);
   hum.innerHTML = response.data.main.humidity;
   maxTemp.innerHTML = Math.round(response.data.main.temp_max);
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${iconApi}@2x.png`
+  );
+  icon.setAttribute("alt", `${iconDescription}`);
+  description.innerHTML = iconDescription;
 }
 
 function currentPos(position) {
@@ -157,9 +176,7 @@ function currentPos(position) {
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?${coordsUrl}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(showTemp);
-  if (fahrenheit.classList.contains("active-temp")) {
-    addCelsius();
-  }
+  bugFixWithFahr();
 }
 
 function geoloc() {
@@ -170,5 +187,18 @@ geoloc();
 let buttCurr = document.querySelector("#current-buttom");
 buttCurr.addEventListener("click", geoloc);
 //
-//метры в секунду -> мили в час
-//картинки погоды
+
+function addForecastForNextWeek() {
+  nextWeek.classList.toggle("activee");
+  if (nextWeek.classList.contains("activee")) {
+    nextWeek.classList.remove("week-hover");
+    dayWeather.classList.add("hide");
+  } else {
+    nextWeek.classList.add("week-hover");
+    dayWeather.classList.remove("hide");
+  }
+}
+
+let nextWeek = document.querySelector("#week");
+nextWeek.addEventListener("click", addForecastForNextWeek);
+let dayWeather = document.querySelector("#day-weather");

@@ -10,13 +10,12 @@ a {
 a:hover {
   color: rgb(46, 137, 255);
 }
-p {
-  padding: 10px 240px;
-}
 .container {
+  width: 1100px;
+}
+.border {
   padding: 30px 45px;
   border-radius: 5px;
-  width: 1100px;
 }
 .entry-field {
   border: none;
@@ -54,6 +53,7 @@ form {
 .wrapper {
   margin-top: 40px;
   text-align: center;
+  justify-content: space-between;
 }
 .current {
   flex-basis: 40%;
@@ -84,8 +84,8 @@ form {
 }
 .weather-forecast {
   text-align: left;
-  margin: 0 auto;
   font-size: 30px;
+  flex-basis: 55%;
 }
 .day {
   cursor: pointer;
@@ -124,7 +124,20 @@ form {
   margin-top: 15px;
   transition: all 200ms ease-out;
 }
-.week:hover {
+/* .week-hover:hover {
   font-size: 30px;
   transition: all 250ms ease-in;
+} */
+.github-link {
+  padding: 15px 5px;
+}
+
+.hide {
+  display: none;
+}
+.activee {
+  position: relative;
+  bottom: 85px;
+  margin: 0;
+  transition: all 200ms ease-out;
 }

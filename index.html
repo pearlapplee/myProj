@@ -27,99 +27,106 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="container border">
-      <div class="row header">
-        <div class="col-8">
-          <form id="searching">
-            <input
-              type="text"
-              class="entry-field shadow-sm form-control"
-              id="city-input"
-              placeholder="enter a city"
-              required
-            />
-            <input
-              type="submit"
-              class="button but-1 shadow-sm"
-              value="search"
-            />
-          </form>
-          <button
-            type="button"
-            id="current-buttom"
-            class="button but-2 shadow-sm"
-          >
-            current
-          </button>
+    <div class="container">
+      <div class="border">
+        <div class="row header">
+          <div class="col-8">
+            <form id="searching">
+              <input
+                type="text"
+                class="entry-field shadow-sm form-control"
+                id="city-input"
+                placeholder="enter a city"
+                required
+                autocomplete="off"
+              />
+              <input
+                type="submit"
+                class="button but-1 shadow-sm"
+                value="search"
+              />
+            </form>
+            <button
+              type="button"
+              id="current-buttom"
+              class="button but-2 shadow-sm"
+            >
+              current
+            </button>
+          </div>
+          <a class="col text-center kyiv">Kyiv</a>
+          <a class="col text-center warszawa">Warszaw</a>
+          <a class="col text-center paris">Paris</a>
+          <a class="col text-center ottawa">Ottawa</a>
         </div>
-        <a class="col text-center kyiv">Kyiv</a>
-        <a class="col text-center warszawa">Warszaw</a>
-        <a class="col text-center paris">Paris</a>
-        <a class="col text-center ottawa">Ottawa</a>
-      </div>
 
-      <div class="wrapper d-flex align-items-center">
-        <div class="current">
-          <h1 class="current-city" id="changedCity"></h1>
-          <div class="current-time" id="current-time"></div>
-          <div
-            class="wrapp-fa d-flex justify-content-center align-items-center"
-          >
-            <i class="fa-regular fa-sun sun"></i>
-            <div class="other-weath">
-              <div class="wind">
-                <i class="fa-solid fa-wind"></i> <span id="wind"></span> m/s
-              </div>
-              <div class="rain">
-                <i class="fa-solid fa-cloud-rain"></i>
-                <span id="humidity"></span> %
+        <div class="wrapper d-flex align-items-center">
+          <div class="current">
+            <h1 class="current-city" id="changedCity"></h1>
+            <div class="current-time" id="current-time"></div>
+            <span id="description"></span>
+            <div
+              class="wrapp-fa d-flex justify-content-center align-items-center"
+            >
+              <img src="" id="icon" alt="weather_icon" />
+              <!-- <i class="fa-regular fa-sun sun"></i> -->
+              <div class="other-weath">
+                <div class="wind">
+                  <i class="fa-solid fa-wind"></i> <span id="wind"></span>
+                  <span id="unit-speed"> m/s</span>
+                </div>
+                <div class="rain">
+                  <i class="fa-solid fa-cloud-rain"></i>
+                  <span id="humidity"></span> %
+                </div>
               </div>
             </div>
-          </div>
-          <div class="current-temperature">
-            <span id="temp"></span>
-            <span class="unit-temp active-temp" id="celsius">°C</span>
-            |
-            <span class="unit-temp" id="fahrenheit">°F</span>
-          </div>
-        </div>
-
-        <div class="weather-forecast">
-          <div class="day">
-            <span class="date yesterday"></span>
-            yesterday
-            <i class="fa-solid fa-cloud" style="color: gray"></i>
-            18°C
+            <div class="current-temperature">
+              <span id="temp"></span>
+              <span class="unit-temp active-temp" id="celsius">°C</span>
+              |
+              <span class="unit-temp" id="fahrenheit">°F</span>
+            </div>
           </div>
 
-          <div class="day current-day active">
-            <span class="current-date"></span>
-            today
-            <i class="fa-solid fa-sun" style="color: rgb(252, 248, 0)"></i>
-            <span id="max-temp"></span><span id="today-units">°C</span>
-          </div>
+          <div class="weather-forecast">
+            <div id="day-weather">
+              <div class="day">
+                <span class="date yesterday"></span>
+                yesterday
+                <i class="fa-solid fa-cloud" style="color: gray"></i>
+                18°C
+              </div>
 
-          <div class="day">
-            <span class="date tomorrow"></span>
-            tomorrow
-            <i
-              class="fa-solid fa-cloud-sun-rain"
-              style="color: rgb(117, 159, 255)"
-            ></i>
-            20°C
-          </div>
+              <div class="day current-day active">
+                <span class="current-date"></span>
+                today
+                <i class="fa-solid fa-sun" style="color: rgb(252, 248, 0)"></i>
+                <span id="max-temp"></span>
+                <span id="today-units">°C</span>
+              </div>
 
-          <div class="week">next week <i class="fa-solid fa-carrot"></i></div>
+              <div class="day">
+                <span class="date tomorrow"></span>
+                tomorrow
+                <i
+                  class="fa-solid fa-cloud-sun-rain"
+                  style="color: rgb(117, 159, 255)"
+                ></i>
+                20°C
+              </div>
+            </div>
+
+            <div class="week week-hover" id="week">
+              next week <i class="fa-solid fa-carrot"></i>
+            </div>
+          </div>
         </div>
       </div>
+      <p class="github-link">
+        <a href="https://github.com/pearlapplee/myProj">Open source</a> by MM
+      </p>
     </div>
-    <p>
-      <a href="https://github.com/pearlapplee/myProj" target="_blank"
-        >Open source</a
-      >
-      by MM
-    </p>
-
     <script src="src/index.js"></script>
   </body>
 </html>
